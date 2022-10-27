@@ -1,5 +1,5 @@
-import Login from "./authentication/Login.js";
-import Register from "./authentication/Register";
+import Login from "./components/Auth/Login.js";
+import Register from "./components/Auth/Register";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 function App() {

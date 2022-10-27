@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "@coreui/coreui/dist/css/coreui.min.css";
 import {
   CForm,
@@ -16,6 +16,10 @@ import {
   CDropdownToggle,
 } from "@coreui/react";
 import "./login.css";
+import { useDispatch, useSelector } from "react-redux";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
+
 
 export default function Login(props) {
   const [loginPage, setLoginpage] = React.useState(true);
@@ -27,6 +31,45 @@ export default function Login(props) {
   const [selectCity, setSelectCity] = React.useState("");
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
+
+  const [loading, setLoading] = useState(false);
+
+  // const { isLoggedIn } = useSelector((state) => state.auth);
+  // const { message } = useSelector((state) => state.message);
+
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(clearMessage());
+  // }, [dispatch]);
+
+  // const initialValues = {
+  //   mobile: "",
+  //   password: "",
+  // };
+  // const validationSchema = Yup.object().shape({
+  //   mobile: Yup.number().required("This field is required!"),
+  //   password: Yup.string().required("This field is required!"),
+  // });
+
+  // const handleLogin = (formValue) => {
+  //   const { mobile, password } = formValue;
+  //   setLoading(true);
+
+  //   dispatch(login({ mobile, password }))
+  //     .unwrap()
+  //     .then(() => {
+  //       navigate("/profile");
+  //       window.location.reload();
+  //     })
+  //     .catch(() => {
+  //       setLoading(false);
+  //     });
+  // };
+
+  // if (isLoggedIn) {
+  //   return <Navigate to="/profile" />;
+  // }
 
   const registerHandle = (e) => {
     e.preventDefault();

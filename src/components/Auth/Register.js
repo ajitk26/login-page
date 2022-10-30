@@ -14,69 +14,19 @@ import {
   CDropdownToggle,
 } from "@coreui/react";
 import "./login.css";
-import {
-  useSendOtpMutation,
-  useVerifyOtpMutation,
-} from "../../services/OtpAuthApi";
 import { Alert } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-const Register = (props) => {
-  const [authId, setAuthId] = useState(null);
+const Register = () => {
+  const navigate=useNavigate()
+  const [authId,] = useState(null);
   const [error, setError] = useState({
     status: false,
     msg: "",
     type: "",
   });
-  //RTK Query
+  
 
-  const [sendOtp] = useSendOtpMutation();
-  const [verifyOtp] = useVerifyOtpMutation();
-  // const [mobile, setMobile] = useState("");
-
-  const handleSendOtpForm = async (e) => {
-    e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const actualData = {
-      phonenumber: data.get("phonenumber"),
-    };
-    console.log(actualData);
-
-    if (actualData.phonenumber) {
-      const response = await sendOtp(actualData);
-      if (response.data.status === "success") {
-        setAuthId(response.data.id);
-        document.getElementById("signUpForm").reset();
-        setError({ status: true, msg: "res.data.message", type: "success" });
-      }
-      if (response.data.status === "rejected") {
-        setError({ status: true, msg: response.data.message, type: "error" });
-      }
-    } else {
-      setError({ status: true, msg: "Enter valid number", type: "error" });
-    }
-    // console.table(mobile);
-  };
-  const handleVerifyOtpForm = async (e) => {
-    e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const actualData = {
-      otpCode: data.get("otpCode"),
-      id: authId,
-    };
-
-    if (actualData.otpCode && actualData.id) {
-      const response = await verifyOtp(actualData);
-      if (response.data.status === "success") {
-        document.getElementById("otpCode").reset();
-        setError({ status: true, msg: "res.data.message", type: "success" });
-      }
-      if (response.data.status === "rejected") {
-        setError({ status: true, msg: response.data.message, type: "error" });
-      }
-    } else {
-      setError({ status: true, msg: "OTP Required", type: "error" });
-    }
-  };
 
   return (
     <div>
@@ -84,7 +34,7 @@ const Register = (props) => {
         <img className="img2" src="./background.jpg" alt="backgroundImg"></img>
         {authId === null ? (
           <>
-            <CForm className="form" onSubmit={handleSendOtpForm}>
+            <CForm className="form">
               <p className="heading">Signup</p>
               <br></br>
               <CRow className="mb-3 row">
@@ -102,13 +52,11 @@ const Register = (props) => {
                       </CDropdownToggle>
                       <CDropdownMenu>
                         <CDropdownItem href="#">+91</CDropdownItem>
-                        <CDropdownItem href="#">+12</CDropdownItem>
-                        <CDropdownItem href="#">+1</CDropdownItem>
                       </CDropdownMenu>
                     </CDropdown>
                     <CFormInput
                       id="signUpForm"
-                      name="phonenumber"
+                      name="phone"
                       aria-label="Text input with dropdown button"
                       // value={mobile}
                       // onChange={(e) => setMobile(e.target.value)}
@@ -132,7 +80,7 @@ const Register = (props) => {
                 Already have an account? &nbsp;{" "}
                 <CButton
                   className="btn"
-                  onClick={() => props.onFormSwitch("Login")}
+                  onClick={() =>navigate("/")}
                 >
                   Login
                 </CButton>
@@ -141,7 +89,7 @@ const Register = (props) => {
           </>
         ) : (
           <>
-            <CForm className="form" onSubmit={handleVerifyOtpForm}>
+            <CForm className="form" >
               <CRow className="mb-3 row">
                 <CFormLabel
                   htmlFor="inputNumber3"

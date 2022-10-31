@@ -40,13 +40,13 @@ export default function Login() {
   const handleApi = () => {
     axios
       .post('https://adminapp.mobbypark.com/api/user/auth/login', {
-        phone: phone,
+        phone: 91+phone,
         password: password,
       })
       .then((result) => {
         console.log(result.data);
         localStorage.setItem('token', result.data.token)
-        navigate('UserDashboard')
+        navigate('/UserDashboard')
       })
       .catch((error) => {
         console.log(error)

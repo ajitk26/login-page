@@ -6,13 +6,13 @@ export default function Parking() {
     return (
         <>
             <div className="parking-root">
-                <div className="img">
+                <div className="p-img">
                     <img src="./background.jpg"></img>
                     <p className="parking-description">For most motorised vehicles, there are three commonly used arrangements of parking spaces—parallel parking, perpendicular parking, and angle parking.</p>
                 </div>
-                <div className="content">
-                    <div className="form">
-                        <p className="heading">Parking Name</p>
+                <div className="p-content">
+                    <div className="p-form">
+                        <p className="p-heading">Parking Name</p>
                         <div className="available-slots">
                             <p>Parking type: Mall</p>
                             <p>Car: 70</p>
@@ -32,10 +32,10 @@ export default function Parking() {
                         </div>
                         <div className="result">
                             <div className="btn-root">
-                                <CButton className="btn">Time 10hr</CButton>
-                                <CButton className="btn">Cost 100rs</CButton>
+                                <CButton className="p-btn">Time 10hr</CButton>
+                                <CButton className="p-btn">Cost 100rs</CButton>
                             </div>
-                            <CButton className="btn pay">PAY</CButton>
+                            <CButton className="p-btn pay">PAY</CButton>
                         </div>
                     </div>
                 </div>

@@ -4,7 +4,9 @@
     display: flex;
     flex-direction: row;
     width: 90vw;
+    margin: auto;
     justify-content: space-around;
+    align-items: center;
     height: fit-content;
 }
 
@@ -16,18 +18,18 @@
     font-family: 'Secular One', sans-serif;
 }
 
-.img{
+.p-img{
     width: 49%;
     height: 100%;
     margin: auto;
 }
 
-.img img{
+.p-img img{
     width: 90%;
     height: auto;
 }
 
-.content {
+.p-content {
     width: 49%;
     margin: auto;
     /* border: 1px solid gray; */
@@ -36,16 +38,16 @@
     height: 100%;
 }
 
-.form {
+.p-form {
     width: 100%;
-    height: 90%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.heading {
+.p-heading {
     font-size: 45px;
     font-family: 'Secular One', sans-serif;
 }
@@ -110,7 +112,7 @@
     align-items: center;
 }
 
-.btn {
+.p-btn {
     padding: 1rem 2rem;
     background-color: gray;
     border: 1px solid gray;
@@ -130,7 +132,7 @@
     background-color: lightgreen;
 }
 
-.btn:hover {
+.p-btn:hover {
     background-color: black;
     color: white;
     transition: all 0.5s;

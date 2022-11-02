@@ -16,12 +16,12 @@ export default function ParkingDashboard() {
     <>
       <div className="parking-root">
         <div className="img">
-          <img src="./background.jpg"></img>
-          <p className="parking-description">
+          {/* <img src="./background.jpg"></img> */}
+          {/* <p className="parking-description">
             For most motorised vehicles, there are three commonly used
             arrangements of parking spaces—parallel parking, perpendicular
             parking, and angle parking.
-          </p>
+          </p> */}
         </div>
         <div className="content">
           <div className="form">

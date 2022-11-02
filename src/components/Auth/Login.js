@@ -14,7 +14,7 @@ import {
 import "./login.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import Alert from "@mui/material/Alert"
 
 
 export default function Login() {
@@ -44,12 +44,16 @@ export default function Login() {
         password: password,
       })
       .then((result) => {
-        console.log(result.data);
-        localStorage.setItem('token', result.data.token)
-        navigate('/UserDashboard')
-      })
-      .catch((error) => {
-        console.log(error)
+          localStorage.setItem('token', result.data.token)
+          navigate('/selectCity')
+          console.log(typeof(result.data.token));
+          console.log(result.data.token)
+        })
+
+      .catch((err) => {
+        alert(error)
+        console.log(err)
+
 
       });
     

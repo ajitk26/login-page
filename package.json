@@ -1,12 +1,15 @@
-{
+{ "proxy":"https://adminapp.mobbypark.com/api",
   "name": "login-page",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@coreui/coreui": "^4.2.2",
+    "@coreui/icons": "^2.1.0",
+    "@coreui/icons-react": "^2.1.0",
     "@coreui/react": "^4.4.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.10.11",
     "@reduxjs/toolkit": "^1.8.6",
     "@testing-library/jest-dom": "^5.16.5",

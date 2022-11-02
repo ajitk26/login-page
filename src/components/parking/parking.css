@@ -137,3 +137,13 @@
     color: white;
     transition: all 0.5s;
 }
+
+/**************************SelectCity***************************/
+
+.selectCity{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    gap:20px
+}
+

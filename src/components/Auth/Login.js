@@ -14,13 +14,14 @@ import {
 import "./login.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import { Alert } from '@mui/material';
 
 
 export default function Login() {
   const navigate = useNavigate()
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
+  const [alert, setAlert] = useState(false);
   const [error, setError] = useState({
     status: false,
     msg: "",
@@ -50,17 +51,19 @@ export default function Login() {
       })
       .catch((error) => {
         console.log(error)
-
+        setAlert(!alert)
+        // setError(error.data.error)
       });
     
   };
-
+  console.log(alert);
   return (
     <>
       <div className="root-form">
         <img className="img" src="./background.jpg"></img>
         <CForm className="form">
           <p className="heading">Login</p>
+          {alert === true ? <Alert severity="error" style={{width: '80%', margin: '1rem auto'}} onClose={() => {setAlert(!alert)}}>PhoneNo. and Password dosen't Match</Alert> : null}
           <br></br>
           <CRow className="mb-3 row">
             <CFormLabel

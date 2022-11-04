@@ -147,3 +147,27 @@
     gap:20px
 }
 
+
+/***************parkingList****************************/
+
+.parkingList{
+    display: flex;
+    flex-direction: row;
+}
+
+.parkingCard {
+    width: 35rem;
+    height: 14rem;
+    padding: 1rem;
+    margin:1rem;
+    border-radius:1rem;
+    margin-left:40rem;
+    background-color: whitesmoke;
+    
+}
+.parkingCard:hover {
+    box-shadow: 4px 4px 10px 2px greenyellow;
+    transition: box-shadow 500ms ease-in;
+
+}
+

@@ -1,27 +1,134 @@
-import * as React from "react";
-import { TextField, Box, Button } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { TextField, Box, Button, CircularProgress } from "@mui/material";
+import Axios from "axios";
 import Autocomplete from "@mui/material/Autocomplete";
-import "./parking.css"
+import Card from "react-bootstrap/Card";
+
+import "./parking.css";
+import {
+  CFormSelect,
+  CButton,
+  CSpinner,
+  CCard,
+  CCardBody,
+  CCardText,
+  CCardTitle,
+  CCardImage,
+  CContainer,
+  CCol,
+  CRow,
+} from "@coreui/react";
+import { styled } from "@mui/material/styles";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
 
 export default function SelectCity() {
+  const [location, setLocation] = useState(null);
+  const [myData, setMyData] = useState([]);
+  //   const [loading, setLoading] = useState(false);
+
+  //   useEffect(() => {
+  //     setTimeout(() => setLoading(true), 6000)
+  //   }, [])
+
+  console.log(location);
+
+  function authHeader() {
+    const token = localStorage.getItem("token");
+    console.log(token);
+    let obj = {
+      Authorization: token,
+    };
+    return obj;
+  }
+
+  const handleApi = () => {
+    Axios.post(
+      "https://adminapp.mobbypark.com/api/user/getParkingspace/nearAll",
+      {
+        location: location,
+      },
+      { headers: authHeader() }
+    )
+      .then((result) => {
+        console.log(result.data);
+        setMyData(result.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
-    <div className="selectCity">
-      <Autocomplete
-        disablePortal
-        id="combo-box-demo"
-        options={AllLocation}
-        sx={{ width: 400 }}
-        renderInput={(params) => (
-          <TextField {...params} label="Select Location" />
-        )}
-      />
-      <Button variant="contained">Submit</Button>
-    </div>
+    <>
+      <div>
+        <div className="selectCity">
+          {/* <CFormSelect
+         style={{width:500}}
+          size="lg"
+          className="mb-3"
+          aria-label="Large select example"
+          options={allLocation}
+          onClick={handleLocation}
+        >
+        </CFormSelect> */}
+
+          <Autocomplete
+            value={location}
+            onChange={(event, newLocation) => {
+              setLocation(newLocation);
+            }}
+            disablePortal
+            id="combo-box-demo"
+            options={allLocation}
+            sx={{ width: 400 }}
+            renderInput={(params) => (
+              <TextField {...params} label="Select Location" />
+            )}
+          />
+          <Button variant="contained" onClick={handleApi} sx={{ height: 53 }}>
+            Submit
+          </Button>
+        </div>
+
+        <CContainer fluid style={{ marginTop: 20 }}>
+          {myData.map((parkingList) => {
+            const { id, name, parking_name, email, phone, city, parking_addr,parking_pic } =
+              parkingList;
+            return (
+              <div key={id}>
+
+          <CCard
+                className="parkingCard">
+                  <CCardTitle style={{color:"blue"}}>
+                    <b>Parking Name : {parking_name}</b>
+                  </CCardTitle>
+                  <h6><b>Phone : </b>{phone}</h6>
+                  <h6><b>Email : </b>{email}</h6>
+                  <h6><b>Name : </b> {name}</h6>
+                  <h6><b>City : </b> {city}</h6>
+                  <h6><b>Parking Address : </b>{parking_addr}</h6>
+                </CCard>
+            
+              </div>
+            );
+          })}
+        </CContainer>
+      </div>
+    </>
   );
 }
 
-const AllLocation = [
-  { label: "Banglore" },
+const allLocation = [
+  { label: "Bangalore" },
   { label: "Hubli-Dharwad" },
   { label: "Mysore" },
   { label: "Kalaburagi" },

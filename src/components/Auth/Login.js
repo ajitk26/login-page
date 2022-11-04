@@ -30,10 +30,12 @@ export default function Login() {
 
   const handlePhone = (e) => {
     setPhone(e.target.value);
+    console.log(phone)
   };
 
   const handlePassword = (e) => {
     setPassword(e.target.value);
+    console.log(password)
   };
 
 

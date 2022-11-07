@@ -3,11 +3,33 @@
 .parking-root{
     display: flex;
     flex-direction: row;
-    width: 30vw;
+    width: 100vw;
+    margin: 0 auto;
+    justify-content: space-around;
+    height: 100vh;
+}
+
+.p-heading {
+    font-size: 45px;
+    margin: 2rem auto;
+    font-family: 'Secular One', sans-serif;
+}
+
+.p-content {
+    display: flex;
+    width: 65%;
+    margin: auto;
+    box-shadow:  0 0 15px gray;
+    background-color: white;
+}
+
+.p-form {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    height: fit-content;
-    margin-top: 50px;
-    margin-left: 30vw;
+    justify-content: space-around;
 }
 
 .available-slots {
@@ -74,7 +96,7 @@
 .btn-root {
     display: flex;
     justify-content: space-between;
-    width: 50%;
+    width: 30%;
 }
 
 

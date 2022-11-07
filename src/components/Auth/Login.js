@@ -50,7 +50,7 @@ export default function Login() {
       .then((result) => {
         console.log(result.data);
         localStorage.setItem('token', result.data.token)
-        navigate('/UserDashboard')
+        navigate('/selectParkingList')
       })
       .catch((error) => {
         setAlert(!alert)

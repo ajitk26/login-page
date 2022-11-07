@@ -36,9 +36,9 @@ export default function ParkingDashboard() {
             parking, and angle parking.
           </p>
         </div> */}
-        <div className="content">
-          <div className="form">
-            <p className="heading">{location.state.parking_name}</p>
+        <div className="p-content">
+          <div className="p-form">
+            <p className="p-heading">{location.state.parking_name}</p>
             <div className="available-slots">
               <p>Parking type: Mall</p>
               <p>Car: 70</p>
@@ -61,7 +61,7 @@ export default function ParkingDashboard() {
                 <Button   variant="contained">Time : 10 hr</Button>
                 <Button variant="contained">Cost : Rs100</Button>
               </div>
-              <Button variant="contained" className="btn pay">
+              <Button variant="contained" className="p-btn pay">
                 PAY
               </Button>
             </div>

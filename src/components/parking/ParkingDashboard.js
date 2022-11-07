@@ -1,10 +1,18 @@
-import { CButton, CFormSelect } from "@coreui/react";
+import { CButton, CContainer, CFormSelect } from "@coreui/react";
 import React from "react";
 import "./parking.css";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,useLocation} from "react-router-dom";
+import { Button } from "@mui/material";
+import { getParkingList } from "../../redux/features/ParkingApiSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function ParkingDashboard() {
+
+  const parkingApiData = useSelector((state) => state.parkingApiData.data);
+  console.log(parkingApiData)
+
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -12,20 +20,25 @@ export default function ParkingDashboard() {
       navigate("/");
     }
   });
+
+  const location=useLocation();
   return (
     <>
+ {/* <button (fn=>e.target.id ki value state save krlega)</>>Card</button> */}
+  {/* //redirect comp import yha daalo or yha uss state ko as prop pass krdo */}
       <div className="parking-root">
-        <div className="img">
-          <img src="./background.jpg"></img>
+        
+          
+        {/* <div className="img">
           <p className="parking-description">
             For most motorised vehicles, there are three commonly used
             arrangements of parking spaces—parallel parking, perpendicular
             parking, and angle parking.
           </p>
-        </div>
+        </div> */}
         <div className="content">
           <div className="form">
-            <p className="heading">Parking Name</p>
+            <p className="heading">{location.state.parking_name}</p>
             <div className="available-slots">
               <p>Parking type: Mall</p>
               <p>Car: 70</p>
@@ -45,22 +58,19 @@ export default function ParkingDashboard() {
             </div>
             <div className="result">
               <div className="btn-root">
-                <CButton className="btn">Time 10hr</CButton>
-                <CButton className="btn">Cost 100rs</CButton>
+                <Button   variant="contained">Time : 10 hr</Button>
+                <Button variant="contained">Cost : Rs100</Button>
               </div>
-              <CButton className="btn pay">PAY</CButton>
+              <Button variant="contained" className="btn pay">
+                PAY
+              </Button>
             </div>
-            <CButton
-              onClick={() => {
-                localStorage.removeItem("token");
-                navigate("/");
-              }}
-            >
-              Logout
-            </CButton>
           </div>
         </div>
+
+
       </div>
+
     </>
   );
 }

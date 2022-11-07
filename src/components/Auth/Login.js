@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "@coreui/coreui/dist/css/coreui.min.css";
 import {
   CForm,
@@ -50,17 +50,16 @@ export default function Login() {
         navigate('/UserDashboard')
       })
       .catch((error) => {
-        console.log(error)
         setAlert(!alert)
-        // setError(error.data.error)
+        setError(error)
       });
     
   };
-  console.log(alert);
+  console.log(error);
   return (
     <>
       <div className="root-form">
-        <img className="img" src="./background.jpg"></img>
+        <img className="img" src="./background.jpg" alt=" "></img>
         <CForm className="form">
           <p className="heading">Login</p>
           {alert === true ? <Alert severity="error" style={{width: '80%', margin: '1rem auto'}} onClose={() => {setAlert(!alert)}}>PhoneNo. and Password dosen't Match</Alert> : null}

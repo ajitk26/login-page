@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "@coreui/coreui/dist/css/coreui.min.css";
+import {Button} from '@mui/material'
 import {
   CForm,
   CRow,
@@ -14,7 +15,7 @@ import {
 import "./login.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Alert } from '@mui/material';
+import Alert from "@mui/material/Alert"
 
 
 export default function Login() {
@@ -31,10 +32,12 @@ export default function Login() {
 
   const handlePhone = (e) => {
     setPhone(e.target.value);
+    console.log(phone)
   };
 
   const handlePassword = (e) => {
     setPassword(e.target.value);
+    console.log(password)
   };
 
 
@@ -103,17 +106,21 @@ export default function Login() {
               />
             </CCol>
           </CRow>
-          <CButton type="button" className="mb-3 btn" onClick={handleApi}>
+          <div className="forgetPass">
+          <Button variant="contained" type="button" className="mb-3" onClick={handleApi}>
             LogIn
-          </CButton>
+          </Button>
+          <p style={{marginLeft:40,fontWeight:500}}>Forgot Password ?</p>
+          </div>
           <p>
             Don't have an account? &nbsp;{" "}
-            <CButton
+            <Button
+            variant="contained"
               className="btn"
               onClick={() => navigate("register")}
             >
               Sign Up
-            </CButton>
+            </Button>
           </p>
         </CForm>
       </div>

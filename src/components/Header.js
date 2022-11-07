@@ -12,9 +12,8 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import SelectCity from './parking/SelectCity'
-import ParkingDashboard from "./parking/ParkingDashboard";
-import ParkingNearMe from "./parking/ParkingNearMe";
+import SelectCity from './parking/SelectParkingList'
+import SelectParkingList from "./parking/SelectParkingList";
 export default function Header() {
   const navigate = useNavigate();
 
@@ -65,7 +64,6 @@ export default function Header() {
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem
-        // onClick={handleMenuClose}
         onClick={() => {
           localStorage.removeItem("token");
           navigate("/");
@@ -158,8 +156,7 @@ export default function Header() {
       {renderMobileMenu}
       {renderMenu}
     </Box>
-    <SelectCity/>
-    <ParkingNearMe/>
+    <SelectParkingList/>
     </>
   );
 }

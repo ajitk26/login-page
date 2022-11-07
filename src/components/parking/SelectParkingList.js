@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { TextField, Box, Button, CircularProgress } from "@mui/material";
+import { TextField, Box, Button, CircularProgress,Divider, Typography } from "@mui/material";
 import Axios from "axios";
 import Autocomplete from "@mui/material/Autocomplete";
-import Card from "react-bootstrap/Card";
-
+import ParkingDashboard from "./ParkingDashboard";
+import { useNavigate } from "react-router-dom";
+import  {getParkingList}  from "../../redux/features/ParkingApiSlice";
 import "./parking.css";
 import {
   CFormSelect,
@@ -21,55 +22,56 @@ import {
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
+import { useDispatch, useSelector } from "react-redux";
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
 
-export default function SelectCity() {
+export default function SelectParkingList(props) {
+    
+  const navigate = useNavigate()
   const [location, setLocation] = useState(null);
   const [myData, setMyData] = useState([]);
   //   const [loading, setLoading] = useState(false);
 
-  //   useEffect(() => {
-  //     setTimeout(() => setLoading(true), 6000)
-  //   }, [])
+  console.log(location)
+  const dispatch= useDispatch();
 
-  console.log(location);
+  const parkingApiData=useSelector((state)=>state.parkingApiData.data);
 
-  function authHeader() {
-    const token = localStorage.getItem("token");
-    console.log(token);
-    let obj = {
-      Authorization: token,
-    };
-    return obj;
-  }
 
-  const handleApi = () => {
-    Axios.post(
-      "https://adminapp.mobbypark.com/api/user/getParkingspace/nearAll",
-      {
-        location: location,
-      },
-      { headers: authHeader() }
-    )
-      .then((result) => {
-        console.log(result.data);
-        setMyData(result.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+
+  //  useEffect(()=>{
+  //   dispatch(getParkingList())
+  //  },[])
+  // console.log(location);
+
+  // function authHeader() {
+  //   const token = localStorage.getItem("token");
+  //   console.log(token);
+  //   let obj = {
+  //     Authorization: token,
+  //   };
+  //   return obj;
+  // }
+
+  // const handleApi = () => {
+    // Axios.post(
+    //   "https://adminapp.mobbypark.com/api/user/getParkingspace/nearAll",
+    //   {
+    //     location: location,
+    //   },
+    //   { headers: authHeader() }
+    // )
+  //     .then((result) => {
+  //       console.log(result.data);
+  //       setMyData(result.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
   return (
     <>
-      <div>
         <div className="selectCity">
           {/* <CFormSelect
          style={{width:500}}
@@ -94,35 +96,36 @@ export default function SelectCity() {
               <TextField {...params} label="Select Location" />
             )}
           />
-          <Button variant="contained" onClick={handleApi} sx={{ height: 53 }}>
+          <Button variant="contained" onClick={()=>dispatch(getParkingList())}  sx={{ height: 53 }}>
             Submit
           </Button>
         </div>
 
-        <CContainer fluid style={{ marginTop: 20 }}>
-          {myData.map((parkingList) => {
+        <div style={{ marginTop: 20 }} className="parkingListContainer">
+          {parkingApiData.map((parkingLst) => {
             const { id, name, parking_name, email, phone, city, parking_addr,parking_pic } =
-              parkingList;
+              parkingLst;
             return (
               <div key={id}>
-
+   
           <CCard
-                className="parkingCard">
-                  <CCardTitle style={{color:"blue"}}>
-                    <b>Parking Name : {parking_name}</b>
-                  </CCardTitle>
+                className="parkingCard" onClick={() => navigate("parkingDashboard",{state:{parking_name}})}>
+                    <Typography sx={{fontWeight:600}} variant="h5">Parking Name : {parking_name}</Typography>
+                    <Divider/>
+
+                  <Typography sx={{marginTop:3}}>
                   <h6><b>Phone : </b>{phone}</h6>
                   <h6><b>Email : </b>{email}</h6>
                   <h6><b>Name : </b> {name}</h6>
                   <h6><b>City : </b> {city}</h6>
                   <h6><b>Parking Address : </b>{parking_addr}</h6>
+                  </Typography>
                 </CCard>
             
               </div>
             );
           })}
-        </CContainer>
-      </div>
+        </div>
     </>
   );
 }

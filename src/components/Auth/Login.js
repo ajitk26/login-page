@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "@coreui/coreui/dist/css/coreui.min.css";
+import {Button} from '@mui/material'
 import {
   CForm,
   CRow,
@@ -48,7 +49,7 @@ export default function Login() {
       })
       .then((result) => {
           localStorage.setItem('token', result.data.token)
-          navigate('/selectCity')
+          navigate('/selectParkingList')
           console.log(typeof(result.data.token));
           console.log(result.data.token)
         })
@@ -65,7 +66,7 @@ export default function Login() {
   return (
     <>
       <div className="root-form">
-        <img className="img" src="./background.jpg"></img>
+      <img className="img" src="./background.jpg"></img>
         <CForm className="form">
           <p className="heading">Login</p>
           {alert === true ? <Alert severity="error" style={{width: '80%', margin: '1rem auto'}} onClose={() => {setAlert(!alert)}}>PhoneNo. and Password dosen't Match</Alert> : null}
@@ -109,17 +110,21 @@ export default function Login() {
               />
             </CCol>
           </CRow>
-          <CButton type="button" className="mb-3 btn" onClick={handleApi}>
+          <div className="forgetPass">
+          <Button variant="contained" type="button" className="mb-3" onClick={handleApi}>
             LogIn
-          </CButton>
+          </Button>
+          <p style={{marginLeft:40,fontWeight:500}}>Forgot Password ?</p>
+          </div>
           <p>
             Don't have an account? &nbsp;{" "}
-            <CButton
+            <Button
+            variant="contained"
               className="btn"
               onClick={() => navigate("register")}
             >
               Sign Up
-            </CButton>
+            </Button>
           </p>
         </CForm>
       </div>

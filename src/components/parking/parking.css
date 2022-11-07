@@ -3,53 +3,11 @@
 .parking-root{
     display: flex;
     flex-direction: row;
-    width: 90vw;
-    margin: auto;
-    justify-content: space-around;
+    width: 30vw;
     align-items: center;
     height: fit-content;
-}
-
-.parking-description {
-    width: 80%;
-    font-size: 15px;
-    color: black;
-    font-weight: 500;
-    font-family: 'Secular One', sans-serif;
-}
-
-.p-img{
-    width: 49%;
-    height: 100%;
-    margin: auto;
-}
-
-.p-img img{
-    width: 90%;
-    height: auto;
-}
-
-.p-content {
-    width: 49%;
-    margin: auto;
-    /* border: 1px solid gray; */
-    border-radius: 20px;
-    box-shadow: 0 0 15px gray;
-    height: 100%;
-}
-
-.p-form {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.p-heading {
-    font-size: 45px;
-    font-family: 'Secular One', sans-serif;
+    margin-top: 50px;
+    margin-left: 30vw;
 }
 
 .available-slots {
@@ -112,15 +70,6 @@
     align-items: center;
 }
 
-.p-btn {
-    padding: 1rem 2rem;
-    background-color: gray;
-    border: 1px solid gray;
-    border-radius: 10px;
-    outline: none;
-    color: black;
-    font-family: 'Secular One', sans-serif;
-}
 
 .btn-root {
     display: flex;
@@ -128,15 +77,6 @@
     width: 50%;
 }
 
-.pay {
-    background-color: lightgreen;
-}
-
-.p-btn:hover {
-    background-color: black;
-    color: white;
-    transition: all 0.5s;
-}
 
 /**************************SelectCity***************************/
 
@@ -156,18 +96,36 @@
 }
 
 .parkingCard {
-    width: 35rem;
-    height: 14rem;
+    width: 34rem;
+    height: 18rem;
     padding: 1rem;
     margin:1rem;
     border-radius:1rem;
-    margin-left:40rem;
-    background-color: whitesmoke;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 20px 53px -60px #000000;
+    transition: 0.8s;
+
     
 }
 .parkingCard:hover {
-    box-shadow: 4px 4px 10px 2px greenyellow;
+    box-shadow: 4px 4px 10px 2px rgb(139, 123, 229);
     transition: box-shadow 500ms ease-in;
 
+}
+
+.parkingListContainer{
+    /* margin-left: 1rem; */
+    display: grid;
+    grid-template-rows: 7rem 7rem 7rem 7rem 7rem 7rem 7rem;
+    grid-template-columns: 40rem 40rem 40rem;
+    row-gap: 15rem;
+    width: 100%;
+
+}
+
+.forgetPass{
+    display: flex;
+    margin-left: 10rem;
+    gap:15px
 }
 

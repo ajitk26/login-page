@@ -27,15 +27,7 @@ export default function ParkingDashboard() {
  {/* <button (fn=>e.target.id ki value state save krlega)</>>Card</button> */}
   {/* //redirect comp import yha daalo or yha uss state ko as prop pass krdo */}
       <div className="parking-root">
-        
-          
-        {/* <div className="img">
-          <p className="parking-description">
-            For most motorised vehicles, there are three commonly used
-            arrangements of parking spaces—parallel parking, perpendicular
-            parking, and angle parking.
-          </p>
-        </div> */}
+        <img src='../background_parkingDash.jpg' alt='<a href="https://www.freepik.com/free-vector/wavy-shape-business-background-paper-cut-style_17819902.htm#query=wave%20background&position=4&from_view=keyword">Image by starline on Freepik</a>' className="p-background"></img>
         <div className="p-content">
           <div className="p-form">
             <p className="p-heading">{location.state.parking_name}</p>
@@ -74,3 +66,4 @@ export default function ParkingDashboard() {
     </>
   );
 }
+
